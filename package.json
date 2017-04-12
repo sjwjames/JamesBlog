@@ -6,6 +6,7 @@
   "scripts": {
     "build:dev": "webpack --env=development --progress --profile --colors",
     "build:dist": "webpack --env=production --progress --profile --colors",
+    "start":"webpack-dev-server --env=development --progress"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,8 @@
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.2",
+    "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "react": "^15.5.3",

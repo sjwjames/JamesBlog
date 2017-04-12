@@ -1,8 +1,8 @@
 const webpackMerge = require('webpack-merge');
 const webpack = require('webpack');
-const commonConfig = require('base.js');
+const commonConfig = require('../config/base.js');
 
-module.exports = function(env) {
+module.exports = function (env) {
     return webpackMerge(commonConfig(), {
         devtool: 'eval-source-map',
         plugins: [
@@ -14,10 +14,11 @@ module.exports = function(env) {
             new webpack.HotModuleReplacementPlugin()
         ],
         devServer: {
-            colors: true,
             historyApiFallback: true,
+            hot: true,
             inline: true,
-            hot: true
+            contentBase: './app',
+            stats: {colors: true}
         }
     })
 };
