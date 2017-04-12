@@ -15,10 +15,8 @@ module.exports = function (env) {
         ],
         devServer: {
             historyApiFallback: true,
-            hot: true,
-            inline: true,
             contentBase: './app',
             stats: {colors: true}
         }
-    })
+    });
 };

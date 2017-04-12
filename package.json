@@ -6,7 +6,7 @@
   "scripts": {
     "build:dev": "webpack --env=development --progress --profile --colors",
     "build:dist": "webpack --env=production --progress --profile --colors",
-    "start":"webpack-dev-server --env=development --progress"
+    "start":"webpack-dev-server --env=development --progress --hot --inline"
   },
   "repository": {
     "type": "git",
