@@ -1,30 +1,30 @@
 const path = require('path');
+const root = './';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = function () {
     return {
+        //context 对entry 和 loader生效
+        context:path.resolve(root, 'app'),
         entry: {
-            'components': './app/components/index.js',
-            'data': './app/data/index.js',
-            'services': './app/services/index.js',
-            'scenes': './app/scenes/index.js'
+            'app': 'index.js',
+            'framework': ['data/index.js','services/index.js','components/index.js']
         },
         output: {
-            path: path.resolve('./', 'public/'),
-            filename: '[name].[hash].js',
-            sourceMapFilename: '[name].map'
+            sourceMapFilename: '[name].map',
+            publicPath:'/'
         },
         resolve: {
             mainFiles: ['index'],
             alias: {
-                Data: './app/data/',
-                Services: './app/services/',
-                Components:'./app/components/'
+                Data: 'data/',
+                Services: 'services/',
+                Components:'components/'
             },
-            extensions: ['.js', 'jsx', 'json', 'less', 'css'],
-            modules: ['./app','node_modules']
+            modules: ['app','node_modules']
         },
         module: {
             loaders: [
@@ -33,11 +33,11 @@ module.exports = function () {
                     loader: 'json-loader'
                 },
                 {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
+                    test: /\.(js|jsx)$/,
+                    include: /app/,
                     loader: 'babel-loader',
                     query: {
-                        presets: ['es2015', 'react']
+                        presets: ['env', 'react']
                     }
                 },
                 {
@@ -61,19 +61,20 @@ module.exports = function () {
             ]
         },
         plugins: [
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                minChunks: function (module) {
-                    return module.context && module.context.indexOf('node_modules') !== -1;
-                }
+            new CleanWebpackPlugin(['public'],{
+                root:root,
+                dry:false
             }),
             new webpack.optimize.CommonsChunkPlugin({
-                name: 'manifest'
+                name: 'lib',
+                minChunks: function (module) {
+                    return module.context && module.context.includes('node_modules');
+                }
             }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 chunksSortMode: 'dependency',
-                template: './app/index.tpl.html',
+                template: 'index.tpl.html',
                 inject: 'body'
             }),
             new ExtractTextPlugin('styles.css')
