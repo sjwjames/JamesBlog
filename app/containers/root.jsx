@@ -1,0 +1,5 @@
+import React, { Component } from 'react'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import configureStore from './skeleton/state/configureStore'
+import App from 'app'
