@@ -10,8 +10,7 @@ module.exports = function () {
         //context 对entry 和 loader生效
         context:path.resolve(root, 'app'),
         entry: {
-            'app': 'index.js',
-            'framework': ['data/index.js','services/index.js','components/index.js']
+            'app': 'index.js'
         },
         output: {
             sourceMapFilename: '[name].map',
