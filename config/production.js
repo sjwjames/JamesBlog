@@ -3,6 +3,7 @@ const root = './';
 const webpackMerge = require('webpack-merge');
 const webpack = require('webpack');
 const commonConfig = require('../config/base.js');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = function(env) {
     return webpackMerge(commonConfig(), {
@@ -12,6 +13,10 @@ module.exports = function(env) {
         },
         devtool: 'source-map',
         plugins: [
+            new CleanWebpackPlugin(['public'],{
+                root:root,
+                dry:false
+            }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
                 debug: false

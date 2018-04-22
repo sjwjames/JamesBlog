@@ -3,27 +3,26 @@ const root = './';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = function () {
     return {
         //context 对entry 和 loader生效
-        context:path.resolve(root, 'app'),
+        context: path.resolve(root, 'app'),
         entry: {
             'app': 'index.jsx'
         },
         output: {
             sourceMapFilename: '[name].map',
-            publicPath:'/'
+            publicPath: '/'
         },
         resolve: {
-            mainFiles: ['index'],
             alias: {
-                Data: 'data/',
-                Services: 'services/',
-                Components:'components/'
+                Components: path.resolve(root, 'app/components/'),
+                Containers: path.resolve(root, 'app/containers/'),
+                Skeleton: path.resolve(root, 'app/skeleton/')
             },
-            modules: ['app','node_modules']
+            extensions: ['.js', '.jsx'],
+            modules: [path.resolve(root, 'app'), path.resolve(root, 'node_modules')],
         },
         module: {
             loaders: [
@@ -33,11 +32,25 @@ module.exports = function () {
                 },
                 {
                     test: /\.(js|jsx)$/,
-                    include: /app/,
                     loader: 'babel-loader',
+                    exclude: /node_modules/,
                     query: {
                         presets: ['env', 'react']
                     }
+                },
+                {
+                    test: /\.less$/,
+                    use: [{
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader"
+                    }, {
+                        loader: "less-loader", options: {
+                            paths: [
+                                path.resolve(__dirname, "node_modules")
+                            ]
+                        }
+                    }]
                 },
                 {
                     test: /\.css$/,
@@ -60,10 +73,6 @@ module.exports = function () {
             ]
         },
         plugins: [
-            new CleanWebpackPlugin(['public'],{
-                root:root,
-                dry:false
-            }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'lib',
                 minChunks: function (module) {
@@ -80,4 +89,3 @@ module.exports = function () {
         ]
     };
 };
- 

@@ -1,15 +1,20 @@
 {
-  "presets": ["react", "env"],
+  "presets": [
+    "react",
+    "env",
+    "es2015",
+    "stage-0"
+  ],
   "env": {
     "development": {
-      "plugins": [["react-transform", {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          "locals": ["module"]
-        }]
-      }],
-      "react-hot-loader/babel"]
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-remove-prop-types"
+      ]
     }
   }
 }

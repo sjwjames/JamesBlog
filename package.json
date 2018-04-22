@@ -6,8 +6,10 @@
   "scripts": {
     "build:dev": "webpack --env=development --progress --profile --colors",
     "build:dist": "webpack --env=production --progress --profile --colors",
-    "start": "webpack-dev-server --env=development --progress --hot --inline",
-    "unit": "karma start karma.conf.js"
+    "start": "webpack-dev-server --env=development --progress",
+    "unit": "karma start karma.conf.js",
+    "mock": "json-server --watch mock/db.js --routes mock/routes.json",
+    "mockDev": "npm run mock && npm run start"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
     "cookie-parser": "^1.4.3",
     "css-loader": "^0.28.0",
@@ -50,8 +53,13 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.9",
+    "less": "^3.0.2",
+    "less-loader": "^4.1.0",
+    "postcss-loader": "^2.1.4",
+    "prop-types": "^15.6.1",
     "react-hot-loader": "^3.1.3",
     "react-transform-hmr": "^1.0.4",
+    "redux-logger": "^3.0.6",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
@@ -59,11 +67,20 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
+    "babel-polyfill": "^6.26.0",
+    "cross-fetch": "^2.1.0",
+    "jQuery": "^1.7.4",
     "normalizr": "^3.2.4",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
+    "react-proxy": "^1.1.8",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-less": "^2.3.1",
+    "semantic-ui-react": "^0.79.1"
   }
 }

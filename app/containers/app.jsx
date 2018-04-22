@@ -1,8 +1,18 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
+import React, { Component} from 'react'
+import NavBar from './navbar'
 
-class App extends Component{
-
+export default class App extends Component{
+    render(){
+        return (
+            <NavBar />
+        )
+    }
 }
 
-export default connect()(App)
+// function mapStateToProps(state){
+//     return {
+
+//     }
+// }
+
+// export default connect(mapStateToProps)(App)
