@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getColumnsFromRemote } from '../skeleton/actions/navBarActions'
-import NavBarComponent from '../components/navbarComponent'
+import NavBarComponent from '../components/navbar/navbarComponent'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
   constructor(props) {
@@ -58,4 +59,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(NavBar)
+export default withRouter(connect(mapStateToProps)(NavBar))

@@ -4,6 +4,11 @@ var blogMoudlePrefix = 'blog-';
 function generateCategories() {
   return [
     {
+      'id': 0,
+      'route': '/home',
+      'name': 'Home'
+    },
+    {
       'id': 1,
       'route': '/tech',
       'name': '技术'
@@ -15,7 +20,7 @@ function generateCategories() {
     },
     {
       'id': 3,
-      'route': '/transfer',
+      'route': '/trans',
       'name': '搬运'
     }
   ];
