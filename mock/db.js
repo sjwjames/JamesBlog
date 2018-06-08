@@ -1,5 +1,6 @@
 var faker = require('faker');
 var blogMoudlePrefix = 'blog-';
+var homeMoudlePrefix = 'home-';
 
 function generateCategories() {
   return [
@@ -81,11 +82,49 @@ function generateDateArchives() {
   ];
 }
 
+function generateHomeDigests() {
+  return [
+    {
+      'id': 1,
+      'title': '如何使用Redux',
+      'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
+      'tags': ['技术', '前端'],
+      'createdAt': 1517414400000,
+      'lastModified': 1517414400000
+    },
+    {
+      'id': 2,
+      'title': '如何使用Java',
+      'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
+      'tags': ['技术', '语言'],
+      'createdAt': 1517414400000,
+      'lastModified': 1517414400000
+    },
+    {
+      'id': 3,
+      'title': '如何使用Python',
+      'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
+      'tags': ['技术', '语言'],
+      'createdAt': 1517414400000,
+      'lastModified': 1517414400000
+    },
+    {
+      'id': 4,
+      'title': '如何使用Js',
+      'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
+      'tags': ['技术', '语言'],
+      'createdAt': 1517414400000,
+      'lastModified': 1517414400000
+    }
+  ];
+}
+
 function generateApp() {
   return {
     [blogMoudlePrefix + 'categories']: generateCategories(),
     [blogMoudlePrefix + 'tags']: generateTags(),
     [blogMoudlePrefix + 'date-archives']: generateDateArchives(),
+    [homeMoudlePrefix + 'digests']: generateHomeDigests(),
   }
 }
 

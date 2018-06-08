@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getColumnsFromRemote } from '../skeleton/actions/navBarActions'
+import { getColumnsFromRemote, selectColumn } from '../skeleton/actions/navBarActions'
 import NavBarComponent from '../components/navbar/navbarComponent'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom'
 class NavBar extends Component {
   constructor(props) {
     super(props)
+    this.onColumnSelected = this.onColumnSelected.bind(this)
   }
 
   componentWillMount() {
@@ -27,10 +28,15 @@ class NavBar extends Component {
   //   }
   // }
 
+  onColumnSelected(column) {
+    const { dispatch } = this.props
+    dispatch(selectColumn(column))
+  }
+
   render() {
     const { columns, isFetching } = this.props
     return (
-      <NavBarComponent columns={columns} isFetching={isFetching} />
+      <NavBarComponent columns={columns} isFetching={isFetching} onColumnSelected={this.onColumnSelected} />
     )
   }
 }
@@ -48,7 +54,7 @@ NavBar.propTypes = {
 }
 
 const mapStateToProps = state => {
-  const { navbarDataState } = state.default
+  const { navbarDataState } = state.navBarColumns
   const { columns, isFetching } = navbarDataState || {
     columns: [],
     isFetching: true

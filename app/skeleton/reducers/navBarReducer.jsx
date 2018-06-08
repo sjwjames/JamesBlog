@@ -1,11 +1,6 @@
-import { FETCHING_COLUMNS, COLUMN_RECEIVED, COLUMN_UNRECEIVED } from '../actions/navBarActions'
+import { FETCHING_COLUMNS, COLUMN_RECEIVED, COLUMN_UNRECEIVED, SELECT_COLUMN } from '../actions/navBarActions'
 
-export default function getColumns(state = {
-  navbarDataState: {
-    isFetching: true,
-    columns: []
-  }
-}, action) {
+export function navBarColumns(state = {}, action) {
   switch (action.type) {
     case FETCHING_COLUMNS:
       return Object.assign({}, state, {
@@ -14,6 +9,7 @@ export default function getColumns(state = {
           columns: []
         }
       })
+      break;
     case COLUMN_RECEIVED:
       return Object.assign({}, state, {
         navbarDataState: {
@@ -21,13 +17,24 @@ export default function getColumns(state = {
           columns: action.columns
         }
       })
+      break;
     case COLUMN_UNRECEIVED:
       return Object.assign({}, state, {
         navbarDataState: {
           isFetching: false,
-          columns: action.columns //todo 获取本地columns
+          columns: action.columns
         }
       })
+      break;
+    default:
+      return state
+  }
+}
+
+export function selectedColumn(state = {}, action) {
+  switch (action.type) {
+    case SELECT_COLUMN:
+      return action.column
     default:
       return state
   }

@@ -10,18 +10,21 @@ import Home from './home'
 import Tech from './tech'
 import Literal from './literal'
 import Trans from './trans'
+import './app.less'
 
 export default class App extends Component {
     render() {
         return (
             <div className='sjwjames-blog' id='sjwjamesApp'>
                 <NavBar />
-                <Switch>
-                    <Route path="/tech" component={Tech} />
-                    <Route path="/literal" component={Literal} />
-                    <Route path="/trans" component={Trans} />
-                    <Route component={Home} />
-                </Switch>
+                <div className='ui container'>
+                    <Switch>
+                        <Route path="/tech" component={Tech} />
+                        <Route path="/literal" component={Literal} />
+                        <Route path="/trans" component={Trans} />
+                        <Route component={Home} />
+                    </Switch>
+                </div>
             </div>
         )
     }

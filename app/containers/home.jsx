@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { getColumnsFromRemote } from '../skeleton/actions/homeActions'
+import { getDigestsFromRemote } from '../skeleton/actions/homeActions'
 import HomeComponent from '../components/home/homeComponent'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
@@ -11,50 +11,44 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    // const { dispatch } = this.props
-    // dispatch(getColumnsFromRemote())
+    const { dispatch } = this.props
+    dispatch(getDigestsFromRemote())
   }
 
-  // componentDidMount() {
-  //   const { dispatch } = this.props
-  //   dispatch(getColumnsFromRemote())
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
-  //     const { dispatch, selectedSubreddit } = nextProps
-  //     dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  //   }
-  // }
-
   render() {
-    // const { columns, isFetching } = this.props
+    const { digests } = this.props
     return (
-      <HomeComponent/>
+      <HomeComponent digests={digests} />
     )
   }
 }
 
 Home.propTypes = {
-//   columns: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       route: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired
-//     })
-//   ).isRequired,
-//   isFetching: PropTypes.bool.isRequired,
-//   dispatch: PropTypes.func.isRequired
+  digests: PropTypes.shape({
+    isFetching: PropTypes.bool.isRequired,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        digest: PropTypes.string.isRequired,
+        tags: PropTypes.arrayOf(PropTypes.string.isRequired),
+        createdAt: PropTypes.number.isRequired,
+        lastModified: PropTypes.number.isRequired,
+      })
+    ).isRequired
+  })
 }
 
 const mapStateToProps = state => {
-//   const { navbarDataState } = state.default
-//   const { columns, isFetching } = navbarDataState || {
-//     columns: [],
-//     isFetching: true
-//   }
+  const { homeDigests } = state
+  const { digests } = homeDigests || {
+    digests: {
+      isFetching: false,
+      data: []
+    }
+  }
   return {
-    
+    digests
   }
 }
 

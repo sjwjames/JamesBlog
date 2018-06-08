@@ -21,7 +21,7 @@ function receivedColumns(data) {
 
 function unReceivedColumns(err) {
     //触发提示 暂时用alert代替 后续创建中间件对收发请求进行包装和解包以及格式化处理
-    window.alert(err.msg);
+    // window.alert(err.msg);
     //read from local storage
     return {
         type: COLUMN_UNRECEIVED,
@@ -63,5 +63,12 @@ function fetchColumns() {
 export function getColumnsFromRemote() {
     return (dispatch) => {
         return dispatch(fetchColumns())
+    }
+}
+
+export function selectColumn(column){
+    return {
+        type: SELECT_COLUMN,
+        column
     }
 }

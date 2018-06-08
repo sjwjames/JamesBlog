@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
-import * as navBarReducers from './navBarReducer'
+import * as navBarReducer from './navBarReducer'
+import * as homeReducer from './homeReducer'
 import { routerReducer } from 'react-router-redux'
 
 const blogApp = combineReducers(Object.assign({router:routerReducer},
-    navBarReducers
+    navBarReducer,
+    homeReducer
 ));
 
 export default blogApp
