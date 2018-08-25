@@ -8,7 +8,6 @@ import { withRouter } from 'react-router-dom'
 class NavBar extends Component {
   constructor(props) {
     super(props)
-    this.onColumnSelected = this.onColumnSelected.bind(this)
   }
 
   componentWillMount() {
@@ -28,15 +27,10 @@ class NavBar extends Component {
   //   }
   // }
 
-  onColumnSelected(column) {
-    const { dispatch } = this.props
-    dispatch(selectColumn(column))
-  }
-
   render() {
     const { columns, isFetching } = this.props
     return (
-      <NavBarComponent columns={columns} isFetching={isFetching} onColumnSelected={this.onColumnSelected} />
+      <NavBarComponent columns={columns} isFetching={isFetching}/>
     )
   }
 }

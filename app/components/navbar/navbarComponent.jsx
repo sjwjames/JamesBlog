@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
-import './navbar.less'
+import navbarStyle from './navbar.less'
 
 export default class NavBarComponent extends Component {
     render() {
-        const { columns, isFetching, onColumnSelected } = this.props;
+        const { columns, isFetching } = this.props;
 
         return (
             <div className='ui secondary pointing menu sjwjames-blog-menu'>
                 {columns.map((column, index) =>
-                    <NavLink className='item' key={column.id} to={column.route} onClick={onColumnSelected(column)}>{column.name}</NavLink>
+                    <NavLink className='item' key={column.id} to={{
+                        pathname: column.route,
+                        state: { selectedColumn: column }
+                    }}>{column.name}</NavLink>
                 )}
                 <div className='right menu'>
                     <div className='ui category search'>
@@ -33,6 +36,5 @@ NavBarComponent.propTypes = {
             name: PropTypes.string.isRequired
         })
     ).isRequired,
-    isFetching: PropTypes.bool.isRequired,
-    onColumnSelected:PropTypes.func.isRequired
+    isFetching: PropTypes.bool.isRequired
 };

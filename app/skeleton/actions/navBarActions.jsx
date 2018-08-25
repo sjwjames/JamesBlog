@@ -65,10 +65,3 @@ export function getColumnsFromRemote() {
         return dispatch(fetchColumns())
     }
 }
-
-export function selectColumn(column){
-    return {
-        type: SELECT_COLUMN,
-        column
-    }
-}

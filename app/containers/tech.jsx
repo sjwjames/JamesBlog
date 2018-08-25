@@ -11,54 +11,53 @@ class Tech extends Component {
     }
 
     componentWillMount() {
-        // const { dispatch } = this.props
-        // dispatch(getColumnsFromRemote())
+        const { dispatch } = this.props
+        dispatch(getDigestsFromRemote())
     }
 
-    // componentDidMount() {
-    //   const { dispatch } = this.props
-    //   dispatch(getColumnsFromRemote())
-    // }
-
-    // componentWillReceiveProps(nextProps) {
-    //   if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
-    //     const { dispatch, selectedSubreddit } = nextProps
-    //     dispatch(fetchPostsIfNeeded(selectedSubreddit))
-    //   }
-    // }
-
     render() {
-        // const { columns, isFetching } = this.props
+        const { digests } = this.props
         return (
-            <TechComponent />
+            <div className='ui two column grid'>
+                {/* <MainFrameComponent digests={digests} />
+                <TimeLine /> */}
+            </div>
         )
     }
 }
 
 Tech.propTypes = {
-    //   columns: PropTypes.arrayOf(
-    //     PropTypes.shape({
-    //       id: PropTypes.number.isRequired,
-    //       route: PropTypes.string.isRequired,
-    //       name: PropTypes.string.isRequired
-    //     })
-    //   ).isRequired,
-    //   isFetching: PropTypes.bool.isRequired,
-    //   dispatch: PropTypes.func.isRequired
+    digests: PropTypes.shape({
+        isFetching: PropTypes.bool.isRequired,
+        data: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                title: PropTypes.string.isRequired,
+                digest: PropTypes.string.isRequired,
+                tags: PropTypes.arrayOf(PropTypes.string.isRequired),
+                createdAt: PropTypes.number.isRequired,
+                lastModified: PropTypes.number.isRequired,
+            })
+        ).isRequired
+    })
 }
 
 const mapStateToProps = state => {
-    //   const { navbarDataState } = state.default
-    //   const { columns, isFetching } = navbarDataState || {
-    //     columns: [],
-    //     isFetching: true
-    //   }
-    //   return {
-    //     columns,
-    //     isFetching
-    //   }
-    return {
+    const { allDigests } = state
+    const { selectedColumn } = state.router.location.state || {}
+    var digests = {
+        isFetching: false,
+        data: []
+    };
+    if (selectedColumn) {
+        digests = allDigests[selectedColumn.id] || {
+            isFetching: false,
+            data: []
+        }
+    }
 
+    return {
+        digests
     }
 }
 

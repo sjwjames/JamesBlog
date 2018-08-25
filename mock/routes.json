@@ -1,5 +1,7 @@
 {
     "/api/v1/*": "/$1",
     "/blog/*": "/blog-$1",
-    "/home/*": "/home-$1"
+    "/home/*": "/home-$1",
+    "/timeLine/*": "/timeLine-$1",
+    "/digests": "/digests"
 }

@@ -1,24 +1,24 @@
-import { FETCHING_DIGESTS, DIGESTS_RECEIVED, DIGESTS_UNRECEIVED, SELECT_DIGEST } from '../actions/homeActions'
+import { FETCHING_DIGESTS, DIGESTS_RECEIVED, DIGESTS_UNRECEIVED, SELECT_DIGEST } from '../actions/digestActions'
 
-export function homeDigests(state = {}, action) {
+export function allDigests(state = {}, action) {
     switch (action.type) {
         case FETCHING_DIGESTS:
             return Object.assign({}, state, {
-                digests: {
+                [action.category]: {
                     isFetching: true,
                     data: []
                 }
             })
         case DIGESTS_RECEIVED:
             return Object.assign({}, state, {
-                digests: {
+                [action.category]: {
                     isFetching: false,
                     data: action.digests
                 }
             })
         case DIGESTS_UNRECEIVED:
             return Object.assign({}, state, {
-                digests: {
+                [action.category]: {
                     isFetching: false,
                     data: action.digests
                 }
@@ -27,12 +27,3 @@ export function homeDigests(state = {}, action) {
             return state
     }
 }
-
-// export function selectedColumn(state = {}, action) {
-//     switch (action.type) {
-//       case SELECT_COLUMN:
-//         return action.column
-//       default:
-//         return state
-//     }
-//   }

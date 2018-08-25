@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 
 export default class DigestCardComponent extends Component {
     render() {
@@ -21,7 +22,7 @@ export default class DigestCardComponent extends Component {
             <div className="ui card" key={digest.id}>
                 <div className="content">
                     <div className="header">{digest.title}</div>
-                    <div className="meta">{new Date(digest.lastModified).toString()}</div>
+                    <div className="meta">{moment(digest.lastModified).format('YYYY-MM-DD HH:mm:ss')}</div>
                     <div className="description">
                         <p>{digest.digest}</p>
                     </div>
