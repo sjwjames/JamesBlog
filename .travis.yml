@@ -7,7 +7,7 @@ jobs:
   include:
     - stage: development
       script:
-        - npm build:dev
+        - npm run build:dev
       deploy:
         provider: heroku
         skip_cleanup: true
@@ -19,7 +19,7 @@ jobs:
           branch: dev
     - stage: staging
       script:
-        - npm build:dev
+        - npm run build:dev
       deploy:
         provider: heroku
         skip_cleanup: true
@@ -31,7 +31,7 @@ jobs:
           branch: staging
     - stage: production
       script:
-        - npm build:dev
+        - npm run build:dist
       deploy:
         provider: heroku
         skip_cleanup: true
