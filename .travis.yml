@@ -1,8 +1,44 @@
-deploy:
-  provider: heroku
-  api_key:
-    secure: Ohzsp2rVTKxyn4GKDix5njS5jLj4FDsP9p7RWHF+5UWasdQyJ1Envdvfa/gR/GeqSn4wW+JLeBFapYORkx/+N7FRafQJZ+JXdVIXpHLjDmkjJ+niAyMkRgIf8337W1yUK/jr239lGS2dmRzhE7cehGNkDAOkLuCeAaLBrP848/+tbLMclbAcvIXRZJw87B1XEa6F6eKbMpcLJgKFwun+siH4WbL9IfXJTEBxtc776T80yzx4F9sbQvOfqxg7BS7Z+lAYVG40PJuqK/OFLzNjulT7qWMPYvDIzWq6vW6UuJvfJR/aCMTwJTl6olF86pysQ46qtxZBDal/UCzA/aHdiy2rbNwUHVbjtCHZcI3T2+3ggbDq7u6mCbXNqV4WfsGv5CC6KEgkaY2z2ZoGK9XvTpTzZJN78SljWcK5trc1CAbLLVbOQj+ON6EqCC+wjO4vBIBt1fhmzCAtlwg/Vkj4mlBEkJ137g6RcTjar5QdWeaCnkmMdD7PBlBNNF9xYDb/QaFTeKfKx7v9tLnRLJRD/Bk+suLFnXk6X9tJxeBG36rXuWPLt++aii6lg9HwAedIPxHLHssmsexRrf8S168Khed1Jb8gVkdvQVZyqKKgWB4btVtWY13mwzYOrCsBCXHkgMxls0GuuNU+BVPWuaHIsvMO1X7oPuyf0tvqJCVS/S4=
-  app: JamesBlog
-  on:
-    repo: sjwjames/JamesBlog
-    all_branches: true
+language: node_js
+node_js: 
+  - "9.3.0"
+install:
+  - npm install
+jobs:
+  include:
+    - stage: development
+      script:
+        - npm build:dev
+      deploy:
+        provider: heroku
+        skip_cleanup: true
+        api_key:
+          secure: Ohzsp2rVTKxyn4GKDix5njS5jLj4FDsP9p7RWHF+5UWasdQyJ1Envdvfa/gR/GeqSn4wW+JLeBFapYORkx/+N7FRafQJZ+JXdVIXpHLjDmkjJ+niAyMkRgIf8337W1yUK/jr239lGS2dmRzhE7cehGNkDAOkLuCeAaLBrP848/+tbLMclbAcvIXRZJw87B1XEa6F6eKbMpcLJgKFwun+siH4WbL9IfXJTEBxtc776T80yzx4F9sbQvOfqxg7BS7Z+lAYVG40PJuqK/OFLzNjulT7qWMPYvDIzWq6vW6UuJvfJR/aCMTwJTl6olF86pysQ46qtxZBDal/UCzA/aHdiy2rbNwUHVbjtCHZcI3T2+3ggbDq7u6mCbXNqV4WfsGv5CC6KEgkaY2z2ZoGK9XvTpTzZJN78SljWcK5trc1CAbLLVbOQj+ON6EqCC+wjO4vBIBt1fhmzCAtlwg/Vkj4mlBEkJ137g6RcTjar5QdWeaCnkmMdD7PBlBNNF9xYDb/QaFTeKfKx7v9tLnRLJRD/Bk+suLFnXk6X9tJxeBG36rXuWPLt++aii6lg9HwAedIPxHLHssmsexRrf8S168Khed1Jb8gVkdvQVZyqKKgWB4btVtWY13mwzYOrCsBCXHkgMxls0GuuNU+BVPWuaHIsvMO1X7oPuyf0tvqJCVS/S4=
+        app: JamesBlog
+        on:
+          repo: sjwjames/JamesBlog
+          branch: dev
+    - stage: staging
+      script:
+        - npm build:dev
+      deploy:
+        provider: heroku
+        skip_cleanup: true
+        api_key:
+          secure: Ohzsp2rVTKxyn4GKDix5njS5jLj4FDsP9p7RWHF+5UWasdQyJ1Envdvfa/gR/GeqSn4wW+JLeBFapYORkx/+N7FRafQJZ+JXdVIXpHLjDmkjJ+niAyMkRgIf8337W1yUK/jr239lGS2dmRzhE7cehGNkDAOkLuCeAaLBrP848/+tbLMclbAcvIXRZJw87B1XEa6F6eKbMpcLJgKFwun+siH4WbL9IfXJTEBxtc776T80yzx4F9sbQvOfqxg7BS7Z+lAYVG40PJuqK/OFLzNjulT7qWMPYvDIzWq6vW6UuJvfJR/aCMTwJTl6olF86pysQ46qtxZBDal/UCzA/aHdiy2rbNwUHVbjtCHZcI3T2+3ggbDq7u6mCbXNqV4WfsGv5CC6KEgkaY2z2ZoGK9XvTpTzZJN78SljWcK5trc1CAbLLVbOQj+ON6EqCC+wjO4vBIBt1fhmzCAtlwg/Vkj4mlBEkJ137g6RcTjar5QdWeaCnkmMdD7PBlBNNF9xYDb/QaFTeKfKx7v9tLnRLJRD/Bk+suLFnXk6X9tJxeBG36rXuWPLt++aii6lg9HwAedIPxHLHssmsexRrf8S168Khed1Jb8gVkdvQVZyqKKgWB4btVtWY13mwzYOrCsBCXHkgMxls0GuuNU+BVPWuaHIsvMO1X7oPuyf0tvqJCVS/S4=
+        app: JamesBlog
+        on:
+          repo: sjwjames/JamesBlog
+          branch: staging
+    - stage: production
+      script:
+        - npm build:dev
+      deploy:
+        provider: heroku
+        skip_cleanup: true
+        api_key:
+          secure: Ohzsp2rVTKxyn4GKDix5njS5jLj4FDsP9p7RWHF+5UWasdQyJ1Envdvfa/gR/GeqSn4wW+JLeBFapYORkx/+N7FRafQJZ+JXdVIXpHLjDmkjJ+niAyMkRgIf8337W1yUK/jr239lGS2dmRzhE7cehGNkDAOkLuCeAaLBrP848/+tbLMclbAcvIXRZJw87B1XEa6F6eKbMpcLJgKFwun+siH4WbL9IfXJTEBxtc776T80yzx4F9sbQvOfqxg7BS7Z+lAYVG40PJuqK/OFLzNjulT7qWMPYvDIzWq6vW6UuJvfJR/aCMTwJTl6olF86pysQ46qtxZBDal/UCzA/aHdiy2rbNwUHVbjtCHZcI3T2+3ggbDq7u6mCbXNqV4WfsGv5CC6KEgkaY2z2ZoGK9XvTpTzZJN78SljWcK5trc1CAbLLVbOQj+ON6EqCC+wjO4vBIBt1fhmzCAtlwg/Vkj4mlBEkJ137g6RcTjar5QdWeaCnkmMdD7PBlBNNF9xYDb/QaFTeKfKx7v9tLnRLJRD/Bk+suLFnXk6X9tJxeBG36rXuWPLt++aii6lg9HwAedIPxHLHssmsexRrf8S168Khed1Jb8gVkdvQVZyqKKgWB4btVtWY13mwzYOrCsBCXHkgMxls0GuuNU+BVPWuaHIsvMO1X7oPuyf0tvqJCVS/S4=
+        app: JamesBlog
+        on:
+          repo: sjwjames/JamesBlog
+          branch: master
+
