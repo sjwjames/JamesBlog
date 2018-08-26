@@ -5,7 +5,9 @@ install:
   - npm install
 jobs:
   include:
-    - stage: development
+    - stage: 
+      - name: development
+      if: branch = dev
       script:
         - npm run build:dev
       deploy:
@@ -17,7 +19,9 @@ jobs:
         on:
           repo: sjwjames/JamesBlog
           branch: dev
-    - stage: staging
+    - stage:
+      - name: staging
+      if: branch = staging
       script:
         - npm run build:dev
       deploy:
@@ -29,7 +33,9 @@ jobs:
         on:
           repo: sjwjames/JamesBlog
           branch: staging
-    - stage: production
+    - stage:
+      - name: production
+      if: branch = master
       script:
         - npm run build:dist
       deploy:
