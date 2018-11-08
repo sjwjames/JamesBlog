@@ -21,7 +21,7 @@ class Home extends Component {
     return (
       <div className='ui two column grid'>
         <MainFrameComponent digests={digests} />
-        <TimeLine />
+        {/* <TimeLine /> */}
       </div>
     )
   }
