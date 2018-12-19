@@ -3,19 +3,19 @@ import PropTypes from 'prop-types'
 import 'react-quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
 import Delta from 'quill-delta'
-
+import './post.less'
 export default class PostComponent extends Component {
     render() {
         const {postData} = this.props
-        const postContent = new Delta(postData.data?postData.data.data:[])
+        const postContent = new Delta((postData.data&&postData.data.content)?postData.data.content:[])
         return (
             <div className="ui grid">
-                <div className="ui three wide column dividing rail">
+                {/* <div className="ui three wide column dividing rail">
                     <div className="ui segment">
                         Left Rail Content
                     </div>
-                </div>
-                <ReactQuill className="thirteen wide column" value={postContent} readOnly={true} modules={{toolbar:false}}/>
+                </div> */}
+                <ReactQuill className="sixteen wide column post-content-box" value={postContent} readOnly={true} modules={{toolbar:false}}/>
             </div>
         )
     }

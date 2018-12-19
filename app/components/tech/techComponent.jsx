@@ -11,7 +11,3 @@ export default class TechComponent extends Component {
         )
     }
 }
-
-TechComponent.propTypes = {
-
-};

@@ -12,8 +12,10 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(getDigestsFromRemote(0))
+    const { dispatch, selectedColumn } = this.props
+    if (selectedColumn && selectedColumn.id) {
+      dispatch(getDigestsFromRemote(selectedColumn.id))
+    }
   }
 
   render() {
@@ -27,21 +29,6 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  digests: PropTypes.shape({
-    isFetching: PropTypes.bool.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        digest: PropTypes.string.isRequired,
-        tags: PropTypes.arrayOf(PropTypes.string.isRequired),
-        createdAt: PropTypes.number.isRequired,
-        lastModified: PropTypes.number.isRequired,
-      })
-    ).isRequired
-  })
-}
 
 const mapStateToProps = state => {
   const { allDigests } = state
@@ -58,7 +45,8 @@ const mapStateToProps = state => {
   }
 
   return {
-    digests
+    digests,
+    selectedColumn
   }
 }
 

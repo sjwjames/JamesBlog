@@ -4,6 +4,8 @@ export const FETCHING_DIGESTS = 'FETCHING_DIGESTS'
 export const DIGESTS_RECEIVED = 'DIGESTS_RECEIVED'
 export const DIGESTS_UNRECEIVED = 'DIGESTS_UNRECEIVED'
 export const SELECT_DIGEST = 'SELECT_DIGEST'
+import getApiPath from './actionBase'
+const MODULE_PATH = (getApiPath() + `/post/digests`)
 
 function fetchingDigests(category) {
     return {
@@ -16,7 +18,7 @@ function receivedDigests(data, category) {
     //todo 创建中间件对收发请求进行包装和解包以及格式化处理
     return {
         type: DIGESTS_RECEIVED,
-        digests: data[0] && data[0].digests ? data[0].digests : [],
+        digests: data,
         category
     };
 }
@@ -44,7 +46,7 @@ function unReceivedDigests(err, category) {
 function fetchDigests(category) {
     return (dispatch) => {
         dispatch(fetchingDigests(category))
-        return fetch(`http://localhost:3000/api/v1/digests?category=` + category)
+        return fetch(MODULE_PATH + `?category=` + category)
             .then(res => {
                 if (res.status >= 400) {
                     throw new Error(res.json());

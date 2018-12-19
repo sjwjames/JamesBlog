@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
-import navbarStyle from './navbar.less'
+import './navbar.less'
 
 export default class NavBarComponent extends Component {
     render() {

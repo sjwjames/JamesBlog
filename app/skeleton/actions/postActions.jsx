@@ -3,6 +3,8 @@ import fetch from 'cross-fetch'
 export const FETCHING_POST = 'FETCHING_POST'
 export const POST_RECEIVED = 'POST_RECEIVED'
 export const POST_UNRECEIVED = 'POST_UNRECEIVED'
+import getApiPath from './actionBase'
+const MODULE_PATH = (getApiPath() + `/post`)  
 
 function fetchingPost(id) {
     return {
@@ -15,7 +17,7 @@ function receivedPost(data, id) {
     //todo 创建中间件对收发请求进行包装和解包以及格式化处理
     return {
         type: POST_RECEIVED,
-        data: data[0]||{},
+        data: data||{},
         id
     };
 }
@@ -40,7 +42,7 @@ function unReceivedPost(err, id) {
 function fetchPost(id) {
     return (dispatch) => {
         dispatch(fetchingPost(id))
-        return fetch(`http://localhost:3000/api/v1/post?id=` + id)
+        return fetch(MODULE_PATH+`/` + id)
             .then(res => {
                 if (res.status >= 400) {
                     throw new Error(res.json());
