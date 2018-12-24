@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import MainFrameComponent from '../mainFrame/mainFrameComponent'
 
 export default class TechComponent extends Component {
     render() {
-        const { } = this.props;
+        const {digests} = this.props;
 
         return (
-            <div>Tech</div>
+            <MainFrameComponent digests={digests} />
         )
     }
 }
-
-TechComponent.propTypes = {
-
-};

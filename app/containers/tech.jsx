@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { getColumnsFromRemote } from '../skeleton/actions/homeActions'
+import { getDigestsFromRemote } from '../skeleton/actions/digestActions'
 import TechComponent from '../components/tech/techComponent'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
@@ -11,35 +11,19 @@ class Tech extends Component {
     }
 
     componentWillMount() {
-        const { dispatch } = this.props
-        dispatch(getDigestsFromRemote())
+        const { dispatch,selectedColumn } = this.props
+        const category = selectedColumn.id 
+        dispatch(getDigestsFromRemote(category))
     }
 
     render() {
         const { digests } = this.props
         return (
             <div className='ui two column grid'>
-                {/* <MainFrameComponent digests={digests} />
-                <TimeLine /> */}
+                <TechComponent digests={digests} />
             </div>
         )
     }
-}
-
-Tech.propTypes = {
-    digests: PropTypes.shape({
-        isFetching: PropTypes.bool.isRequired,
-        data: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                title: PropTypes.string.isRequired,
-                digest: PropTypes.string.isRequired,
-                tags: PropTypes.arrayOf(PropTypes.string.isRequired),
-                createdAt: PropTypes.number.isRequired,
-                lastModified: PropTypes.number.isRequired,
-            })
-        ).isRequired
-    })
 }
 
 const mapStateToProps = state => {
@@ -57,7 +41,8 @@ const mapStateToProps = state => {
     }
 
     return {
-        digests
+        digests,
+        selectedColumn
     }
 }
 

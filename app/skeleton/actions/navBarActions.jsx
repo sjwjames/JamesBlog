@@ -4,6 +4,8 @@ export const FETCHING_COLUMNS = 'FETCHING_COLUMNS'
 export const COLUMN_RECEIVED = 'COLUMN_RECEIVED'
 export const COLUMN_UNRECEIVED = 'COLUMN_UNRECEIVED'
 export const SELECT_COLUMN = 'SELECT_COLUMN'
+import getApiPath from './actionBase'
+const MODULE_PATH = (getApiPath() + `/blog/categories`)   
 
 function fetchingColumns() {
     return {
@@ -48,7 +50,7 @@ function unReceivedColumns(err) {
 function fetchColumns() {
     return (dispatch) => {
         dispatch(fetchingColumns())
-        return fetch(`http://localhost:3000/api/v1/blog/categories`)
+        return fetch(MODULE_PATH)
             .then(res => {
                 if (res.status >= 400) {
                     throw new Error(res.json());

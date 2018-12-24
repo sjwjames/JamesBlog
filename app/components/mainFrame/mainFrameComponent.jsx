@@ -23,19 +23,3 @@ export default class MainFrameComponent extends Component {
         )
     }
 }
-
-MainFrameComponent.propTypes = {
-    digests: PropTypes.shape({
-        isFetching: PropTypes.bool.isRequired,
-        data: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                title: PropTypes.string.isRequired,
-                digest: PropTypes.string.isRequired,
-                tags: PropTypes.arrayOf(PropTypes.string.isRequired),
-                createdAt: PropTypes.number.isRequired,
-                lastModified: PropTypes.number.isRequired,
-            })
-        ).isRequired
-    })
-};

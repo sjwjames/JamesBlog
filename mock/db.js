@@ -1,8 +1,9 @@
 var faker = require('faker');
-var blogMoudlePrefix = 'blog-';
-var homeMoudlePrefix = 'home-';
-var timeLineMoudlePrefix = 'timeLine-';
-var digestMoudlePrefix = 'digests';
+var blogModulePrefix = 'blog-';
+var homeModulePrefix = 'home-';
+var timeLineModulePrefix = 'timeLine-';
+var digestModulePrefix = 'digests';
+var postModulePrefix = 'post';
 
 function generateCategories() {
   return [
@@ -104,7 +105,7 @@ function generateDateArchives() {
   return [
     {
       category: 0,
-      data:{
+      data: {
         'id': 1,
         'dateBegin': 1519833600000,
         'dateEnd': 1522511999999
@@ -112,7 +113,7 @@ function generateDateArchives() {
     },
     {
       category: 1,
-      data:{
+      data: {
         'id': 2,
         'dateBegin': 1517414400000,
         'dateEnd': 1519833599999
@@ -132,7 +133,8 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '前端'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 0
         },
         {
           'id': 2,
@@ -140,7 +142,8 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '语言'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 0
         },
         {
           'id': 3,
@@ -148,7 +151,8 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '语言'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 0
         },
         {
           'id': 4,
@@ -156,7 +160,8 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '语言'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 0
         }
       ]
     },
@@ -169,7 +174,8 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '前端'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 1
         },
         {
           'id': 6,
@@ -177,7 +183,8 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '语言'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 1
         },
         {
           'id': 7,
@@ -185,7 +192,8 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '语言'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 1
         },
         {
           'id': 8,
@@ -193,19 +201,36 @@ function generateDigests() {
           'digest': '就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。就是教你怎么用呗，然而，你可以自己看文档呀，4不4撒。',
           'tags': ['技术', '语言'],
           'createdAt': 1517414400000,
-          'lastModified': 1517414400000
+          'lastModified': 1517414400000,
+          'category': 1
         }
       ]
     }
   ]
 }
 
+function generatePosts() {
+  return [
+    {
+      'id':1,
+      'data':{
+        ops: [
+          { insert: 'Gandalf', attributes: { bold: true } },
+          { insert: ' the ' },
+          { insert: 'Grey', attributes: { color: '#cccccc' } }
+        ]
+      }
+    }
+  ]
+}
+
 function generateApp() {
   return {
-    [blogMoudlePrefix + 'categories']: generateCategories(),
-    [blogMoudlePrefix + 'tags']: generateTags(),
-    [digestMoudlePrefix]: generateDigests(),
-    [timeLineMoudlePrefix + 'data']: generateTimeLine(),
+    [blogModulePrefix + 'categories']: generateCategories(),
+    [blogModulePrefix + 'tags']: generateTags(),
+    [digestModulePrefix]: generateDigests(),
+    [timeLineModulePrefix + 'data']: generateTimeLine(),
+    [postModulePrefix]: generatePosts(),
   }
 }
 

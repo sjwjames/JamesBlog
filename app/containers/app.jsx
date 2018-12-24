@@ -10,6 +10,7 @@ import Home from './home'
 import Tech from './tech'
 import Literal from './literal'
 import Trans from './trans'
+import MyPost from './post'
 import './app.less'
 
 export default class App extends Component {
@@ -22,6 +23,7 @@ export default class App extends Component {
                         <Route path="/tech" component={Tech} />
                         <Route path="/literal" component={Literal} />
                         <Route path="/trans" component={Trans} />
+                        <Route path="/post/:id" component={MyPost} />
                         <Route component={Home} />
                     </Switch>
                 </div>

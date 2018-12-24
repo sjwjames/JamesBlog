@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { getColumnsFromRemote } from '../skeleton/actions/homeActions'
+import { getDigestsFromRemote } from '../skeleton/actions/digestActions'
 import LiteralComponent from '../components/literal/literalComponent'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
@@ -11,50 +11,39 @@ class Literal extends Component {
   }
 
   componentWillMount() {
-    // const { dispatch } = this.props
-    // dispatch(getColumnsFromRemote())
+    const { dispatch, selectedColumn } = this.props
+    const category = selectedColumn.id
+    dispatch(getDigestsFromRemote(category))
   }
 
-  // componentDidMount() {
-  //   const { dispatch } = this.props
-  //   dispatch(getColumnsFromRemote())
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
-  //     const { dispatch, selectedSubreddit } = nextProps
-  //     dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  //   }
-  // }
-
   render() {
-    // const { columns, isFetching } = this.props
+    const { digests } = this.props
     return (
-      <LiteralComponent/>
+      <div className='ui two column grid'>
+        <LiteralComponent digests={digests} />
+      </div>
     )
   }
 }
 
-Literal.propTypes = {
-//   columns: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       route: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired
-//     })
-//   ).isRequired,
-//   isFetching: PropTypes.bool.isRequired,
-//   dispatch: PropTypes.func.isRequired
-}
 
 const mapStateToProps = state => {
-//   const { navbarDataState } = state.default
-//   const { columns, isFetching } = navbarDataState || {
-//     columns: [],
-//     isFetching: true
-//   }
+  const { allDigests } = state
+  const { selectedColumn } = state.router.location.state || {}
+  var digests = {
+      isFetching: false,
+      data: []
+  };
+  if (selectedColumn) {
+      digests = allDigests[selectedColumn.id] || {
+          isFetching: false,
+          data: []
+      }
+  }
+
   return {
-      
+      digests,
+      selectedColumn
   }
 }
 
