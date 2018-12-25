@@ -1,2 +1,0 @@
-webpackJsonp([0],{0:function(t,n,u){u("xQ7v"),u("KKCK"),t.exports=u("ZouD")},KKCK:function(t,n,u){"use strict"},ZouD:function(t,n,u){"use strict"},xQ7v:function(t,n,u){"use strict"}},[0]);
-//# sourceMappingURL=framework.map
