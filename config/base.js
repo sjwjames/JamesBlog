@@ -3,7 +3,8 @@ const root = './';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const extractCSS = new ExtractTextPlugin('style.css');
+const extractLESS = new ExtractTextPlugin('lessStyle.css');
 module.exports = function () {
     return {
         //context 对entry 和 loader生效
@@ -25,7 +26,7 @@ module.exports = function () {
             modules: [path.resolve(root, 'app'), path.resolve(root, 'node_modules')],
         },
         module: {
-            loaders: [
+            rules: [
                 {
                     test: /\.json$/,
                     loader: 'json-loader'
@@ -39,19 +40,15 @@ module.exports = function () {
                     }
                 },
                 {
-                    test: /\.less$/,
-                    use: [{
-                        loader: "style-loader"
-                    }, {
-                        loader: "css-loader"
-                    }, {
-                        loader: "less-loader"
-                    }]
+                    test: /\.css$/,
+                    use: extractCSS.extract({
+                        use: [ 'css-loader']
+                    })
                 },
                 {
-                    test: /\.css$/,
-                    use: ExtractTextPlugin.extract({
-                        use: 'css-loader'
+                    test: /\.less$/,
+                    use: extractLESS.extract({
+                        use: ['css-loader','less-loader',]
                     })
                 },
                 {
@@ -81,7 +78,8 @@ module.exports = function () {
                 template: 'index.tpl.html',
                 inject: 'body'
             }),
-            new ExtractTextPlugin('styles.css')
+            extractCSS,
+            extractLESS
         ]
     };
 };
