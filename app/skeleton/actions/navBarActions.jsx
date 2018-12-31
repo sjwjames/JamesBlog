@@ -50,7 +50,11 @@ function unReceivedColumns(err) {
 function fetchColumns() {
     return (dispatch) => {
         dispatch(fetchingColumns())
-        return fetch(MODULE_PATH)
+        return fetch(MODULE_PATH,{
+            headers:{
+                Accept:'application/json'
+            }
+        })
             .then(res => {
                 if (res.status >= 400) {
                     throw new Error(res.json());

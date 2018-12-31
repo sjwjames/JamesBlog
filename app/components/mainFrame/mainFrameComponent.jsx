@@ -16,7 +16,7 @@ export default class MainFrameComponent extends Component {
                             )}
                         </div>
                     } else {
-                        return <div className='ui cards one sjwjamesblog-main-frame'></div>;
+                        return <div className='ui cards one sjwjamesblog-main-frame'>It's Empty right now</div>;
                     }
                 })()}
             </div>
