@@ -6,14 +6,14 @@ import './navbar.less'
 export default class NavBarComponent extends Component {
     render() {
         const { columns, isFetching } = this.props;
-
+        const isActive = (path, match, location) => !!(match || path === location.pathname);
         return (
             <div className='ui secondary pointing menu sjwjames-blog-menu'>
                 {columns.map((column, index) =>
                     <NavLink className='item' key={column.id} to={{
                         pathname: column.route,
                         state: { selectedColumn: column }
-                    }}>{column.name}</NavLink>
+                    }} isActive={isActive.bind(this, column.route)}>{column.name}</NavLink>
                 )}
                 <div className='right menu'>
                     <div className='ui category search'>

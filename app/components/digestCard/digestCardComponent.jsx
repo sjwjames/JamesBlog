@@ -29,7 +29,7 @@ export default class DigestCardComponent extends Component {
                 pathname: "/post/"+digest.id
             }}>
                 <div className="content">
-                    {/* <div className="header">{digest.title}</div> */}
+                    <div className="header">{digest.title}</div>
                     <div className="meta">{moment(digest.updated_at).format('YYYY-MM-DD HH:mm:ss')}</div>
                     <div className="description">
                     <ReactQuill className="digest-content-box" value={postContent} readOnly={true} modules={{toolbar:false}}/>
