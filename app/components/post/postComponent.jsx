@@ -15,7 +15,7 @@ export default class PostComponent extends Component {
                         Left Rail Content
                     </div>
                 </div> */}
-                <h3 style={{textAlign:'center'}}>{postData.data.title}</h3>
+                <h3 style={{textAlign:'center'}}>{postData.data&&postData.data.title?postData.data.title:'Loading'}</h3>
                 <ReactQuill className="sixteen wide column post-content-box" value={postContent} readOnly={true} modules={{toolbar:false}}/>
             </div>
         )
