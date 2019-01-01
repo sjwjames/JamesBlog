@@ -8,7 +8,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = function(env) {
     return webpackMerge(commonConfig(), {
         output:{
-            filename: '[name].js',
+            filename: '[name].js?ver='+(new Date().getTime()),
             path: path.resolve(root, 'public')
         },
         devtool: 'source-map',

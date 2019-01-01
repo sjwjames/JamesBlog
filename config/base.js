@@ -3,8 +3,8 @@ const root = './';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractCSS = new ExtractTextPlugin('style.css');
-const extractLESS = new ExtractTextPlugin('lessStyle.css');
+const extractCSS = new ExtractTextPlugin('style.css?ver='+(new Date().getTime()));
+const extractLESS = new ExtractTextPlugin('lessStyle.css?ver='+(new Date().getTime()));
 module.exports = function () {
     return {
         //context 对entry 和 loader生效
