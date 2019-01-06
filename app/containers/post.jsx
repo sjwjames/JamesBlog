@@ -18,9 +18,10 @@ class MyPost extends Component{
 
     render() {
         const {postData} = this.props
+        const postId = this.props.match.params.id*1
         return (
             <div>
-                <PostComponent postData={postData}/>
+                <PostComponent postData={postData} id={postId}/>
             </div>
         )
     }
