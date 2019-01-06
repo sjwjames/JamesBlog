@@ -11,7 +11,7 @@ export default class DigestCardComponent extends Component {
     render() {
         const { digest } = this.props;
         var tags;
-        const postContent = new Delta(digest.content?digest.content:[])
+        const postContent = (new Delta(digest.content?digest.content:[])).retain(10)
         if (digest.tags && digest.tags.length) {
             tags =
                 <div className="extra content">
