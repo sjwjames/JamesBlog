@@ -4,7 +4,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
-import { Switch } from 'react-router'
+import { Switch,Redirect } from 'react-router'
 import NavBar from './navbar'
 import Home from './home'
 import Tech from './tech'
@@ -24,7 +24,10 @@ export default class App extends Component {
                         <Route path="/literal" component={Literal} />
                         <Route path="/trans" component={Trans} />
                         <Route path="/post/:id" component={MyPost} />
-                        <Route component={Home} />
+                        <Route path="/home" component={Home} />
+                        <Route path="/">
+                            <Redirect to="/home" />
+                        </Route>
                     </Switch>
                 </div>
             </div>
