@@ -14,7 +14,9 @@ class Home extends Component {
   componentWillMount() {
     const { dispatch, selectedColumn } = this.props
     if (selectedColumn && selectedColumn.id) {
-      dispatch(getDigestsFromRemote(selectedColumn.id))
+      setTimeout(()=>{
+        dispatch(getDigestsFromRemote(selectedColumn.id))
+      },0)
     }
   }
 
@@ -37,6 +39,7 @@ const mapStateToProps = state => {
     isFetching: false,
     data: []
   };
+  
   if (selectedColumn) {
     digests = allDigests[selectedColumn.id] || {
       isFetching: false,
