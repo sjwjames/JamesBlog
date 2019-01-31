@@ -23,23 +23,6 @@ class TimeLine extends Component {
     }
 }
 
-TimeLine.propTypes = {
-    archives: PropTypes.shape({
-        data: PropTypes.arrayOf(
-            PropTypes.shape({
-                timestamp: PropTypes.number.isRequired,
-                titles: PropTypes.arrayOf(PropTypes.string.isRequired)
-            })
-        ),
-        isFetching: PropTypes.bool.isRequired
-    }).isRequired,
-    category: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        route: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
-    }).isRequired
-}
-
 const mapStateToProps = state => {
     const { timeLine } = state
     const { selectedColumn } = state.router.location.state || {}

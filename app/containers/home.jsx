@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getDigestsFromRemote } from '../skeleton/actions/digestActions'
 import MainFrameComponent from '../components/mainFrame/mainFrameComponent'
-import TimeLine from '../components/timeLine/timeLine'
+import TimeLineComponent from '../components/timeLine/timeLineComponent'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import moment from 'moment'
 
 class Home extends Component {
   constructor(props) {
@@ -28,10 +29,11 @@ class Home extends Component {
   }
 
   render() {
+    const { archives, selectedColumn } = this.props
     return (
       <div className='ui two column grid'>
         <MainFrameComponent digests={this.props.digests} />
-        {/* <TimeLine /> */}
+        <TimeLineComponent archives={archives} category={selectedColumn} />
       </div>
     )
   }
@@ -67,9 +69,26 @@ const mapStateToProps = state => {
     }
   }
 
+  let archives = {
+    data: [],
+    isFetching: true
+  }
+
+  if (digests.data.length > 0) {
+    archives.data = digests.data.map((item, index) => {
+      return {
+        category: item.category,
+        id: item.id,
+        timestamp: moment(item.updated_at)
+      }
+    })
+    archives.isFetching = false
+  }
+
   return {
     digests,
-    selectedColumn: (!selectedColumn || selectedColumn === {}) ? defaultColumn : selectedColumn
+    selectedColumn: (!selectedColumn || selectedColumn === {}) ? defaultColumn : selectedColumn,
+    archives
   }
 }
 
