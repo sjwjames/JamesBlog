@@ -19,7 +19,7 @@ export default class TimeLineComponent extends Component {
     // }
 
     render() {
-        const { archives, height, category } = this.props;
+        const { archives, category } = this.props;
 
         return (
             <div className='time-line four wide column'>
@@ -27,11 +27,14 @@ export default class TimeLineComponent extends Component {
                     {archives.data.map((archive, index) =>
                         <li key={index}>
                             <div>
-                                <NavLink to={{
+                                <a>
+                                {moment(archive.timestamp).format('YYYY-MM')}
+                                </a>
+                                {/* <NavLink to={{
                                     pathname: category.route,
                                     search:'?timestamp='+archive.timestamp,
                                     state: { selectedColumn: category }
-                                }}>{moment(archive.timestamp).format('YYYY-MM')}</NavLink>
+                                }}>{moment(archive.timestamp).format('YYYY-MM')}</NavLink> */}
                             </div>
                         </li>
                     )}
